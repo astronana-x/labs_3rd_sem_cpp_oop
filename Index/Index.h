@@ -6,6 +6,7 @@ class String; // вперед объявляем String, чтобы можно �
 class Index {
 
 public:
+    Index() : str(nullptr), index(0) {}
     Index(String* s, size_t indx) : str(s), index(indx) {}
 
     // присваивание символа
@@ -16,6 +17,6 @@ public:
 
 private:
 
-    String* str{nullptr};
+    String* str;
     size_t index;
 };

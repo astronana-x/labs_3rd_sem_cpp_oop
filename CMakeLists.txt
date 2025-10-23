@@ -7,9 +7,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Основные исходники
 set(SRC
         main.cpp
+
         String/String.cpp
-        Google_tests/tests.cpp
         Index/Index.cpp
+        BinaryString/BinaryString.cpp
+        ToDoList/ToDoList.cpp
+
+        Node/Node.cpp
+        Stack/Stack.cpp
+
+        Google_tests/binary_utils/binary_utils.cpp
+        Google_tests/binary_utils/binary_utils.h
+
+        #Google_tests/tests1.cpp
+        #Google_tests/tests2.cpp
+        #Google_tests/tests3.cpp
+        #Google_tests/tests4.cpp
+        Google_tests/tests5.cpp
+        Google_tests/tests6.cpp
+
 
 )
 

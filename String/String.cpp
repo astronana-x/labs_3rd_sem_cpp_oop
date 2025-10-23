@@ -1,12 +1,11 @@
 #include "String.h"
-#include "Index/Index.h"
 
+//определение статической константы:
 const size_t String::start_length = 10;
 const size_t String::resize_factor = 2;
 const size_t String::max_length_limit = 1000;
 const char String::value_error = '\0';
 
-//определение статической константы:
 int String :: count = 0;
 
 //конструктор по умолчанию:
@@ -97,19 +96,19 @@ char* String::to_string() const {
 }
 
 // перегрузка + со стркоой типа *char
-String String::operator+(const char* rhs) const {
-    size_t new_len = length + strlen(rhs);
+String String::operator+(const char* s) const {
+    size_t new_len = length + strlen(s);
     char* new_arr = new char[new_len + 1];
     strcpy(new_arr, arr);
-    strcat(new_arr, rhs);
+    strcat(new_arr, s);
     String res(new_arr);
     delete[] new_arr;
     return res;
 }
 
 //сложение двух объектов класса
-String String::operator+(const String& rhs) const {
-    return *this + rhs.get_string();
+String String::operator+(const String& obj) const {
+    return *this + obj.get_string();
 }
 
 //операция вычитания как удаление подстроки
@@ -153,8 +152,9 @@ char String::operator[](size_t indx) const {
     return arr[indx];
 }
 
+
 //метод для увеличения размера массива
-void String::_resize_array(size_t required_size) {
+void String::_resize_array(size_t required_size) { //required_size = требуемый размер
     if (required_size <= max_length) return;
 
     // вычисляем новый размер
@@ -168,13 +168,46 @@ void String::_resize_array(size_t required_size) {
     }
 
     char* new_arr = new char[new_size];
+    memset(new_arr, 0, new_size);
 
     // копируем данные из старого массива
     if (arr) {
         strcpy(new_arr, arr);
         delete[] arr;
     }
-
     arr = new_arr;
     max_length = new_size;
+}
+
+
+//Лабораторная работа 3
+
+//перегрузка оператора вывода
+ostream& operator<<(ostream& os, const String& obj) {
+    if (obj.arr) os << obj.arr;
+    return os;
+}
+
+istream& operator>>(istream& is, String& obj) {
+    char buffer[256];
+    if (!is.getline(buffer, 256)) return is;
+    obj.set_string(buffer);
+    return is;
+}
+
+ofstream& bin_out(ofstream& os, const String& s) {
+    size_t len = s.length;
+    os.write(reinterpret_cast<const char*>(&len), sizeof(len));
+    os.write(s.arr, len);
+    return os;
+}
+
+ifstream& bin_in(ifstream& is, String& s){
+    size_t len;
+    is.read(reinterpret_cast<char*>(&len), sizeof(len));
+    s._resize_array(len + 1); // +1 на всякий случай
+    is.read(s.arr, len);
+    s.arr[len] = '\0';
+    s.length = len;
+    return is;
 }

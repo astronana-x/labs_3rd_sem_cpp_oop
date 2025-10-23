@@ -19,7 +19,6 @@ char Index::operator=(char right) {
         str->_resize_array(index + 1);
     }
 
-    // обновляем длину если нужно
     if (index >= str->get_length()) {
         for (size_t i = str->get_length(); i < index; ++i) {
             str->get_arr()[i] = '\0';
@@ -30,7 +29,6 @@ char Index::operator=(char right) {
     // присваиваем символ
     str->get_arr()[index] = right;
 
-    // гарантируем нуль-терминатор
     if (str->get_length() < str->get_max_length()) {
         str->get_arr()[str->get_length()] = '\0';
     }
