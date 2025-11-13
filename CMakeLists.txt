@@ -17,14 +17,15 @@ set(SRC
         Stack/Stack.cpp
 
         Google_tests/binary_utils/binary_utils.cpp
-        Google_tests/binary_utils/binary_utils.h
 
-        #Google_tests/tests1.cpp
-        #Google_tests/tests2.cpp
-        #Google_tests/tests3.cpp
-        #Google_tests/tests4.cpp
+        Google_tests/tests1.cpp
+        Google_tests/tests2.cpp
+        Google_tests/tests3.cpp
+        Google_tests/tests4.cpp
         Google_tests/tests5.cpp
         Google_tests/tests6.cpp
+        Google_tests/tests7.cpp
+        Google_tests/tests8.cpp
 
 
 )

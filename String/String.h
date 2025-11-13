@@ -24,6 +24,7 @@ public:
     static int get_obj_count();
     virtual char* to_string() const;
 
+
 // Лабораторная работа 2
     static const size_t start_length;
     static const size_t resize_factor;
@@ -35,6 +36,14 @@ public:
     String operator+(const String& obj) const;
     String operator-(const char* substr) const;
     String& operator=(const String& other);
+    bool operator==(const String& other) const {
+        return std::strcmp(this->arr, other.arr) == 0;
+    }
+
+    bool operator<(const String& other) const {
+        return strcmp(this->arr, other.arr) < 0;
+    }
+
 
     // Индексирование + friend class
     Index operator[](size_t indx);   // для записи
